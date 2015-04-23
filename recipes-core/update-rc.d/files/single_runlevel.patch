@@ -1,0 +1,22 @@
+Index: git/update-rc.d
+===================================================================
+--- git.orig/update-rc.d
++++ git/update-rc.d
+@@ -44,7 +44,7 @@ checklinks()
+ 	fi
+ 
+ 	for i in 0 1 2 3 4 5 6 7 8 9 S; do
+-		dn="${etcd}${i}.d"
++		dn="${etcd}.d"
+ 		if [ ! -d $dn ]; then
+ 			continue;
+ 		fi
+@@ -70,7 +70,7 @@ dolink()
+ 	startstop=$1
+ 	lev=`echo $2 | cut -d/ -f1`
+ 	nn=`echo $2 | cut -d/ -f2`
+-	fn="${etcd}${lev}.d/${startstop}${nn}${bn}"
++	fn="${etcd}.d/${startstop}${nn}${bn}"
+ 	[ $verbose -eq 1 ] && echo "  $fn -> ../init.d/$bn"
+ 	if [ $notreally -eq 0 ]; then
+ 		mkdir -p `dirname $fn`
