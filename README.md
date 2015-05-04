@@ -16,15 +16,12 @@ This layer requiired:
 * oe-core
 * meta-openembedded mostly for lua/luajit
 
-Build instructions
+Build instructions.
 
 1. mkdir sources
-2. pushd sources
-3. git clone git://git.openembedded.org/openembedded-core oe-core -b daisy
-4. git clone git://git.openembedded.org/bitbake oe-core/bitbake -b 1.22
-5. git clone git://git.openembedded.org/meta-openembedded meta-oe -b daisy
-6. git clone git@github.com:MentorEmbedded/meta-openwrt.git
-7. popd
-8. . ./source/oe-core/oe-init-build-env
-9. add meta-oe/meta-oe and meta-openwrt to conf/bblayers.conf
-10. MACHINE=qemuarm DISTRO=openwrt bitbake  openwrt-image-base
+2. git clone git://git.openembedded.org/openembedded-core sources/oe-core -b daisy
+3. git clone git://git.openembedded.org/bitbake sources/oe-core/bitbake -b 1.22
+4. git clone git://git.openembedded.org/meta-openembedded sources/meta-oe -b daisy
+5. git clone git@github.com:MentorEmbedded/meta-openwrt.git sources/meta-openwrt
+6. TEMPLATECONF=../sources/meta-openwrt/conf . ./source/oe-core/oe-init-build-env
+7. bitbake  openwrt-image-base
