@@ -1,6 +1,6 @@
 SUMMARY = "openwrt minimal image"
 
-IMAGE_INSTALL = "packagegroup-openwrt-boot rpcd uci iwinfo uhttpd2 luci luci2 strace"
+IMAGE_INSTALL = "packagegroup-openwrt-boot rpcd uci iwinfo uhttpd2 luci luci2 luajit strace"
 IMAGE_FEATURES += ""
 
 LICENSE = "MIT"
