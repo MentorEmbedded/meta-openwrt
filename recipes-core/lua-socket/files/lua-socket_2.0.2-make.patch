@@ -1,0 +1,20 @@
+Index: luasocket-2.0.2/config
+===================================================================
+--- luasocket-2.0.2.orig/config	2007-10-15 06:21:05.000000000 +0200
++++ luasocket-2.0.2/config	2010-11-20 23:36:34.000000000 +0100
+@@ -49,11 +49,10 @@
+ #------
+ # Compiler and linker settings
+ # for Linux
+-CC=gcc
+-DEF=-DLUASOCKET_DEBUG 
+-CFLAGS= $(LUAINC) $(DEF) -pedantic -Wall -O2 -fpic
+-LDFLAGS=-O -shared -fpic
+-LD=gcc 
++#DEF=-DLUASOCKET_DEBUG
++CFLAGS += -fPIC  -O2 `pkg-config --cflags luajit`
++LDFLAGS += -shared -fPIC -O2 `pkg-config --libs luajit`
++LD=$(CC)
+ 
+ #------
+ # End of makefile configuration
