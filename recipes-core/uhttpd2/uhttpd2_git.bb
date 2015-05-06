@@ -7,6 +7,7 @@ SRC_URI = "git://nbd.name/uhttpd2.git;protocol=git;branch=master"
 SRC_URI += "file://ubus.default"
 SRC_URI += "file://uhttpd.config"
 SRC_URI += "file://uhttpd.init"
+SRC_URI += "file://luajit.patch"
 		   
 SRCREV = "b9178b9357798ae23a5724333cc6572d14f23958"
 S = "${WORKDIR}/git"
@@ -15,7 +16,7 @@ inherit cmake
 
 PR="r1"
 
-DEPENDS = "ubus lua5.1 libubox ustream-ssl"
+DEPENDS = "ubus luajit libubox ustream-ssl"
 
 #FIXME: put plugins to the correct place
 FILES_${PN} += "/usr/lib/*.so"
