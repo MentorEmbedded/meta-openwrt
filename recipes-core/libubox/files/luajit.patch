@@ -1,0 +1,45 @@
+Index: git/lua/CMakeLists.txt
+===================================================================
+--- git.orig/lua/CMakeLists.txt
++++ git/lua/CMakeLists.txt
+@@ -8,7 +8,7 @@ IF(NOT LUA_CFLAGS)
+ 	FIND_PROGRAM(PKG_CONFIG pkg-config)
+ 	IF(PKG_CONFIG)
+ 		EXECUTE_PROCESS(
+-			COMMAND pkg-config --silence-errors --cflags lua5.1
++			COMMAND pkg-config --silence-errors --cflags luajit
+ 			OUTPUT_VARIABLE LUA_CFLAGS
+ 			OUTPUT_STRIP_TRAILING_WHITESPACE
+ 		)
+Index: git/examples/uloop-example.lua
+===================================================================
+--- git.orig/examples/uloop-example.lua
++++ git/examples/uloop-example.lua
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env lua
++#!/usr/bin/env luajit
+ 
+ local socket = require "socket"
+ 
+Index: git/lua/uloop.c
+===================================================================
+--- git.orig/lua/uloop.c
++++ git/lua/uloop.c
+@@ -129,7 +129,7 @@ static int ul_timer(lua_State *L)
+ 	lua_pushvalue(L, -1);
+ 	lua_setmetatable(L, -3);
+ 	lua_pushvalue(L, -2);
+-	luaI_openlib(L, NULL, timer_m, 1);
++	luaL_openlib(L, NULL, timer_m, 1);
+ 	lua_pushvalue(L, -2);
+ 
+ 	memset(tout, 0, sizeof(*tout));
+@@ -248,7 +248,7 @@ static int ul_ufd_add(lua_State *L)
+ 	lua_pushvalue(L, -1);
+ 	lua_setmetatable(L, -3);
+ 	lua_pushvalue(L, -2);
+-	luaI_openlib(L, NULL, ufd_m, 1);
++	luaL_openlib(L, NULL, ufd_m, 1);
+ 	lua_pushvalue(L, -2);
+ 
+ 	memset(ufd, 0, sizeof(*ufd));
