@@ -1,0 +1,67 @@
+Index: git/build/config.mk
+===================================================================
+--- git.orig/build/config.mk
++++ git/build/config.mk
+@@ -2,8 +2,8 @@ LUAC = luac
+ LUAC_OPTIONS = -s
+ LUA_TARGET ?= source
+ 
+-LUA_MODULEDIR = /usr/lib/lua/5.1
+-LUA_LIBRARYDIR = /usr/lib/lua/5.1
++LUA_MODULEDIR = /usr/local/share/lua/5.1
++LUA_LIBRARYDIR = /usr/lib/lua/5.1
+ 
+ LUCI_MODULEDIR = $(LUA_MODULEDIR)/luci
+ LUCI_LIBRARYDIR = $(LUA_LIBRARYDIR)/luci
+Index: git/contrib/package/luci-addons/Makefile
+===================================================================
+--- git.orig/contrib/package/luci-addons/Makefile
++++ git/contrib/package/luci-addons/Makefile
+@@ -273,7 +273,7 @@ endef
+ MAKE_FLAGS += \
+ 	MODULES="$(LUCI_SELECTED_MODULES)" \
+ 	LUA_TARGET="$(LUA_TARGET)" \
+-	LUA_SHLIBS="-llua -lm -ldl -lcrypt" \
++	LUA_SHLIBS="-lluajit -lm -ldl -lcrypt" \
+ 	CFLAGS="$(TARGET_CFLAGS) $(LUCI_CFLAGS) -I$(STAGING_DIR)/usr/include" \
+ 	LDFLAGS="$(TARGET_LDFLAGS) -L$(STAGING_DIR)/usr/lib" \
+ 	NIXIO_TLS="$(NIXIO_TLS)" OS="Linux"
+Index: git/contrib/package/luci/Makefile
+===================================================================
+--- git.orig/contrib/package/luci/Makefile
++++ git/contrib/package/luci/Makefile
+@@ -396,7 +396,7 @@ endef
+ MAKE_FLAGS += \
+ 	MODULES="$(LUCI_SELECTED_MODULES)" \
+ 	LUA_TARGET="$(LUA_TARGET)" \
+-	LUA_SHLIBS="-llua -lm -ldl -lcrypt" \
++	LUA_SHLIBS="-lluajit -lm -ldl -lcrypt" \
+ 	CFLAGS="$(TARGET_CFLAGS) $(LUCI_CFLAGS) -I$(STAGING_DIR)/usr/include" \
+ 	LDFLAGS="$(TARGET_LDFLAGS) -L$(STAGING_DIR)/usr/lib" \
+ 	NIXIO_TLS="$(NIXIO_TLS)" OS="Linux"
+Index: git/libs/nixio/Makefile
+===================================================================
+--- git.orig/libs/nixio/Makefile
++++ git/libs/nixio/Makefile
+@@ -61,7 +61,7 @@ ifneq (,$(NIXIO_CROSS_CC))
+ 	CC:=$(NIXIO_CROSS_CC)
+ endif
+ 	NIXIO_OBJ += src/mingw-compat.o
+-	NIXIO_LDFLAGS_POST:=-llua -lssl -lcrypto -lws2_32 -lgdi32
++	NIXIO_LDFLAGS_POST:=-lluajit -lssl -lcrypto -lws2_32 -lgdi32
+ 	FPIC:=
+ 	EXTRA_CFLAGS += -D_WIN32_WINNT=0x0501
+ 	LUA_CFLAGS:=
+Index: git/libs/nixio/axTLS/bindings/lua/Makefile
+===================================================================
+--- git.orig/libs/nixio/axTLS/bindings/lua/Makefile
++++ git/libs/nixio/axTLS/bindings/lua/Makefile
+@@ -52,7 +52,7 @@ include $(AXTLS_HOME)/config/makefile.po
+ CFLAGS += -funit-at-a-time
+ 
+ $(TARGET) : $(OBJ)
+-	$(LD) $(LDFLAGS) $(LDSHARED) -o $@ $^ -L$(AXTLS_HOME)/$(STAGE) -L$(CONFIG_LUA_CORE)/lib -laxtls -llua
++	$(LD) $(LDFLAGS) $(LDSHARED) -o $@ $^ -L$(AXTLS_HOME)/$(STAGE) -L$(CONFIG_LUA_CORE)/lib -laxtls -lluajit
+ 
+ CFLAGS += -I $(CONFIG_LUA_CORE)/include
+ else
