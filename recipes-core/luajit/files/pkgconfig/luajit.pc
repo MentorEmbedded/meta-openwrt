@@ -1,0 +1,11 @@
+prefix=/usr
+libdir=${prefix}/lib
+includedir=${prefix}/include/luajit-2.0
+
+Name: luajit
+Description: Luajit language engine
+Version: 2.x.x
+Requires:
+Libs: -L${libdir} -lluajit-5.1
+Libs.private: -lm
+Cflags: -I${includedir}
