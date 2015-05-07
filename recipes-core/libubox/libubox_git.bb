@@ -17,9 +17,9 @@ DEPENDS = "json-c luajit"
 RDEPENDS_${PN} = "lua-socket"
 EXTRA_OECMAKE = "-DLUAPATH=/usr/lib/lua/5.1"
 
-FILES_${PN} += "/usr/lib/lua/5.1 /lib/"
+FILES_${PN} += "/usr/lib/lua/5.1 /lib/ /usr/share"
 FILES_${PN}-dbg += "/usr/lib/lua/5.1/.debug"
-FILES_${PN}-dev = "/usr"
+FILES_${PN}-dev = "/usr/lib/*.so  /usr/include"
 
 do_install_append () {
 	mkdir ${D}/lib
