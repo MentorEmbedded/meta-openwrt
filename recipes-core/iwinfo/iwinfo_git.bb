@@ -5,13 +5,14 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
 
 SRC_URI = "git://git.openwrt.org/project/iwinfo.git;protocol=git;branch=master"
 SRC_URI += "file://fix-make.patch"
+SRC_URI += "file://luajit.patch"
 		   
 SRCREV = "6e67940be59e1aee5d275dd61172b257cb34d726"
 S = "${WORKDIR}/git"
 
 PR="r1"
 
-DEPENDS = "uci"
+DEPENDS = "uci luajit"
 PACKAGES += "libiwinfo"
 RDEPENDS_${PN} = "libiwinfo"
 
