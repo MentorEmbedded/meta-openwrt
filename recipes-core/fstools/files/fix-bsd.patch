@@ -1,0 +1,13 @@
+Index: git/libblkid-tiny/mkdev.c
+===================================================================
+--- git.orig/libblkid-tiny/mkdev.c
++++ git/libblkid-tiny/mkdev.c
+@@ -12,7 +12,7 @@
+  * GNU General Public License for more details.
+  */
+
+-#define _BSD_SOURCE
++#define _DEFAULT_SOURCE
+
+ #include <sys/stat.h>
+ #include <sys/types.h>

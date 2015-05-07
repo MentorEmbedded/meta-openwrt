@@ -8,6 +8,7 @@ SRC_URI += "file://fstab.init"
 SRC_URI += "file://fstab.default"
 SRC_URI += "file://mount.hotplug"
 SRC_URI += "file://snapshot"
+SRC_URI += "file://fix-bsd.patch"
 		   
 SRCREV = "914b023e71559e033ec5a1f9840511eb1ccaf386"
 S = "${WORKDIR}/git"
