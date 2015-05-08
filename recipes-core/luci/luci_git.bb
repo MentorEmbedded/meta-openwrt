@@ -34,5 +34,6 @@ do_install () {
 	cp -a ${B}/host/* ${D}
 	rm -rf ${D}/tmp
 	rm -rf ${D}/var
+	chmod a+x ${D}/www/cgi-bin/luci
 }
 
