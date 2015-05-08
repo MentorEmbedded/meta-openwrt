@@ -20,7 +20,7 @@ RDEPENDS_${PN} += "libubox libubus"
 RDEPENDS_libubus += "libubox"
 
 FILES_${PN} = "/usr/lib/lua/5.1 /bin /sbin"
-FILES_${PN}-dev = "/usr/include /usr/lib"
+FILES_${PN}-dev = "/usr/include /usr/lib/lib*.so"
 FILES_libubus = "${base_libdir}"
 FILES_${PN}-dbg += "/usr/lib/lua/5.1/.debug"
 
