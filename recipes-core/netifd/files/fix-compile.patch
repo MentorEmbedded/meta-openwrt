@@ -1,0 +1,25 @@
+Index: git/CMakeLists.txt
+===================================================================
+--- git.orig/CMakeLists.txt
++++ git/CMakeLists.txt
+@@ -1,7 +1,19 @@
+ cmake_minimum_required(VERSION 2.6)
+ 
+ PROJECT(netifd C)
+-ADD_DEFINITIONS(-Os -Wall -Werror --std=gnu99 -Wmissing-declarations)
++
++IF(NOT LINL_CFLAGS)
++	FIND_PROGRAM(PKG_CONFIG pkg-config)
++	IF(PKG_CONFIG)
++		EXECUTE_PROCESS(
++			COMMAND pkg-config --silence-errors --cflags libnl-3.0
++			OUTPUT_VARIABLE LIBNL_CFLAGS
++			OUTPUT_STRIP_TRAILING_WHITESPACE
++		)
++	ENDIF()
++ENDIF()
++
++ADD_DEFINITIONS(-Os -Wall -Werror --std=gnu99 -Wmissing-declarations ${LIBNL_CFLAGS})
+ 
+ SET(CMAKE_SHARED_LIBRARY_LINK_C_FLAGS "")
+ 
