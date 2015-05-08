@@ -12,3 +12,7 @@ SRC_URI += " \
 	    file://220-add_lock_util.patch \
 	    file://250-date-k-flag.patch \
            "
+
+do_install_append () {
+	rm ${D}/usr/share/udhcpc/default.script
+}
