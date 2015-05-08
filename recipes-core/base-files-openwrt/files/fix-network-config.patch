@@ -1,0 +1,17 @@
+Index: git/package/base-files/files/etc/config/network
+===================================================================
+--- git.orig/package/base-files/files/etc/config/network
++++ git/package/base-files/files/etc/config/network
+@@ -8,11 +8,9 @@ config interface loopback
+ 
+ config interface lan
+ 	option ifname	eth0
+-	option type 	bridge
+ 	option proto	static
+-	option ipaddr	192.168.1.1
++	option ipaddr	192.168.7.2
+ 	option netmask	255.255.255.0
+-	option ip6assign 60
+ 
+ config interface wan6
+ 	option ifname	@wan
