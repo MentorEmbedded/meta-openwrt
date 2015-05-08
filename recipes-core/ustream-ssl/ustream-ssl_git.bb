@@ -13,4 +13,9 @@ inherit cmake
 PR="r1"
 
 DEPENDS = "libubox openssl"
+FILES_${PN} = "/lib"
+FILES_${PN}-dev = "/usr"
 
+do_install_append () {
+	cp -a ${D}/usr/lib ${D}/lib
+}
