@@ -3,7 +3,7 @@ Index: git/modules/base/luasrc/dispatcher.lua
 --- git.orig/modules/base/luasrc/dispatcher.lua
 +++ git/modules/base/luasrc/dispatcher.lua
 @@ -286,7 +286,7 @@ function dispatch(request)
-
+ 
  		local function _ifattr(cond, key, val)
  			if cond then
 -				local env = getfenv(3)
@@ -30,7 +30,7 @@ Index: git/modules/base/luasrc/cbi/datatypes.lua
 +++ git/modules/base/luasrc/cbi/datatypes.lua
 @@ -341,5 +341,5 @@ function maxlength(val, max)
  end
-
+ 
  function phonedigit(val)
 -	return (val:match("^[0-9\*#!%.]+$") ~= nil)
 +	return (val:match("^[0-9\\*#!%.]+$") ~= nil)
@@ -40,7 +40,7 @@ Index: git/applications/luci-splash/luasrc/controller/splash/splash.lua
 --- git.orig/applications/luci-splash/luasrc/controller/splash/splash.lua
 +++ git/applications/luci-splash/luasrc/controller/splash/splash.lua
 @@ -52,7 +52,7 @@ end
-
+ 
  function action_activate()
  	local ip = luci.http.getenv("REMOTE_ADDR") or "127.0.0.1"
 -	local mac = luci.sys.net.ip4mac(ip:match("^[\[::ffff:]*(%d+.%d+%.%d+%.%d+)\]*$"))
@@ -54,12 +54,37 @@ Index: git/build/gccconfig.mk
 +++ git/build/gccconfig.mk
 @@ -1,8 +1,8 @@
  OS ?= $(shell uname)
-
+ 
 -LUA_SHLIBS = $(shell pkg-config --silence-errors --libs lua5.1 || pkg-config --silence-errors --libs lua-5.1 || pkg-config --silence-errors --libs lua)
 +LUA_SHLIBS = $(shell pkg-config --silence-errors --libs luajit)
  LUA_LIBS = $(if $(LUA_SHLIBS),$(LUA_SHLIBS),$(firstword $(wildcard /usr/lib/liblua.a /usr/local/lib/liblua.a /opt/local/lib/liblua.a)))
 -LUA_CFLAGS = $(shell pkg-config --silence-errors --cflags lua5.1 || pkg-config --silence-errors --cflags lua-5.1 || pkg-config --silence-errors --cflags lua)
 +LUA_CFLAGS = $(shell pkg-config --silence-errors --cflags luajit)
-
+ 
  CC = gcc
  AR = ar
+Index: git/modules/base/luasrc/cbi.lua
+===================================================================
+--- git.orig/modules/base/luasrc/cbi.lua
++++ git/modules/base/luasrc/cbi.lua
+@@ -243,12 +243,15 @@ end
+ function Node._run_hooks(self, ...)
+ 	local f
+ 	local r = false
+-	for _, f in ipairs(arg) do
+-		if type(self[f]) == "function" then
+-			self[f](self)
+-			r = true
++	if arg ~= nil
++	then
++		for _, f in ipairs(arg) do
++			if type(self[f]) == "function" then
++				self[f](self)
++				r = true
++			end
+ 		end
+-	end
++	end
+ 	return r
+ end
+ 
