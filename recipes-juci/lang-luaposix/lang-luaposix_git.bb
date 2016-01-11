@@ -14,7 +14,7 @@ export HELP2MAN = "${STAGING_DIR_NATIVE}/usr/bin/help2man"
 
 inherit autotools
 
-DEPENDS = "luajit luajit-native"
+DEPENDS = "luajit luajit-native help2man-native"
 RDEPENDS_${PN} = "luajit"
 
 EXTRA_OECONF = " LUA='${STAGING_DIR_NATIVE}/usr/bin/luajit'  LUA_INCLUDE='-I${STAGING_INCDIR}/luajit-2.0'"
