@@ -21,7 +21,7 @@ FILES_${PN}-dev = "/usr/include /usr/lib/libiwinfo.so"
 FILES_libiwinfo = "/usr/lib/libiwinfo.so.0.0 /usr/lib/libiwinfo.so.0"
 
 do_compile () {
-	oe_runmake compile
+	oe_runmake 'FPIC=-fPIC' compile
 }
 
 do_install () {
