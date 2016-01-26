@@ -19,6 +19,7 @@ RDEPENDS_${PN} = "libiwinfo"
 FILES_${PN} = "/usr/bin /usr/lib/lua/5.1/iwinfo.so"
 FILES_${PN}-dev = "/usr/include /usr/lib/libiwinfo.so" 
 FILES_libiwinfo = "/usr/lib/libiwinfo.so.0.0 /usr/lib/libiwinfo.so.0"
+FILES_${PN}-dbg = "/usr/lib/lua/5.1/.debug/iwinfo.so /usr/lib/.debug/libiwinfo.so.0.0 /usr/src/debug/iwinfo/* /usr/bin/.debug/*"
 
 do_compile () {
 	oe_runmake 'FPIC=-fPIC' compile
