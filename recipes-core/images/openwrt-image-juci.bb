@@ -48,7 +48,7 @@ fix_image () {
 
 	echo "tty1::askfirst:/bin/ash --login" >> ${IMAGE_ROOTFS}/etc/inittab
 	#luajit
-	ln -s /usr/bin/luajit ${IMAGE_ROOTFS}/usr/bin/lua
+	#ln -s /usr/bin/luajit ${IMAGE_ROOTFS}/usr/bin/lua
 }
 
 IMAGE_PREPROCESS_COMMAND_append = "fix_image"
