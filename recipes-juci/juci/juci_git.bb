@@ -29,23 +29,23 @@ do_install_append () {
 }
 
 do_compile () {
-	oe_runmake clean
-	oe_runmake
+	oe_runmake -j1 clean
+	oe_runmake -j1
 	touch Makefile.local
 	touch .cleaned
-	oe_runmake CONFIG_PACKAGE_juci=y
-	oe_runmake CONFIG_PACKAGE_juci-router-openwrt=y
-	oe_runmake CONFIG_PACKAGE_juci-theme-inteno=y
-	oe_runmake CONFIG_PACKAGE_juci-mod-status=y
-	oe_runmake CONFIG_PACKAGE_juci-mod-system=y
-	oe_runmake CONFIG_PACKAGE_juci-event=y
-	oe_runmake CONFIG_PACKAGE_juci-jquery-console=y
-	oe_runmake CONFIG_PACKAGE_juci-ethernet=y
-	oe_runmake CONFIG_PACKAGE_juci-inteno-router=y
-	oe_runmake CONFIG_PACKAGE_juci-firewall-fw3=y
-	oe_runmake CONFIG_PACKAGE_juci-netmode=y
-	oe_runmake CONFIG_PACKAGE_juci-network-netifd=y
-	oe_runmake CONFIG_PACKAGE_juci-openwrt-wireless=y
+	oe_runmake -j1 CONFIG_PACKAGE_juci=y
+	oe_runmake -j1 CONFIG_PACKAGE_juci-router-openwrt=y
+	oe_runmake -j1 CONFIG_PACKAGE_juci-theme-inteno=y
+	oe_runmake -j1 CONFIG_PACKAGE_juci-mod-status=y
+	oe_runmake -j1 CONFIG_PACKAGE_juci-mod-system=y
+	oe_runmake -j1 CONFIG_PACKAGE_juci-event=y
+	oe_runmake -j1 CONFIG_PACKAGE_juci-jquery-console=y
+	oe_runmake -j1 CONFIG_PACKAGE_juci-ethernet=y
+	oe_runmake -j1 CONFIG_PACKAGE_juci-inteno-router=y
+	oe_runmake -j1 CONFIG_PACKAGE_juci-firewall-fw3=y
+	oe_runmake -j1 CONFIG_PACKAGE_juci-netmode=y
+	oe_runmake -j1 CONFIG_PACKAGE_juci-network-netifd=y
+	oe_runmake -j1 CONFIG_PACKAGE_juci-openwrt-wireless=y
 }
 
 do_install () {
