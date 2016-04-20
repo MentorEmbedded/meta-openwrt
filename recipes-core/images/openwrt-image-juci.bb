@@ -51,4 +51,4 @@ fix_image () {
 	#ln -s /usr/bin/luajit ${IMAGE_ROOTFS}/usr/bin/lua
 }
 
-IMAGE_PREPROCESS_COMMAND_append = "fix_image"
+IMAGE_PREPROCESS_COMMAND_append = " fix_image;"
