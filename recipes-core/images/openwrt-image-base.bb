@@ -48,4 +48,4 @@ fix_image () {
 	echo "tty1::askfirst:/bin/ash --login" >> ${IMAGE_ROOTFS}/etc/inittab
 }
 
-IMAGE_PREPROCESS_COMMAND_append = "fix_image"
+IMAGE_PREPROCESS_COMMAND_append = " fix_image;"
