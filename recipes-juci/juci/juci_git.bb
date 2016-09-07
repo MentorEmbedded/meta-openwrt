@@ -10,6 +10,8 @@ B = "${S}"
 
 PR="r1"
 
+PARALLEL_MAKE = ""
+
 export CONFIG_PACKAGE_juci-ubus-core = "y"
 
 DEPENDS = "libuv-lua"
