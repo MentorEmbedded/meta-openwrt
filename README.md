@@ -22,6 +22,6 @@ Build instructions.
 2. git clone git://git.openembedded.org/openembedded-core sources/oe-core -b dizzy
 3. git clone git://git.openembedded.org/bitbake sources/oe-core/bitbake -b 1.26
 4. git clone git://git.openembedded.org/meta-openembedded sources/meta-oe -b dizzy
-5. git clone git@github.com:MentorEmbedded/meta-openwrt.git sources/meta-openwrt
+5. git clone git@github.com:MentorEmbedded/meta-openwrt.git sources/meta-openwrt -b juci
 6. TEMPLATECONF=../sources/meta-openwrt/conf . ./sources/oe-core/oe-init-build-env
 7. bitbake  openwrt-image-base
