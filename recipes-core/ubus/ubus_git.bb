@@ -3,7 +3,6 @@ HOMEPAGE = "http://wiki.openwrt.org/doc/techref/ubus"
 LICENSE = "LGPLv2"
 LIC_FILES_CHKSUM = "file://ubusd.c;beginline=1;endline=12;md5=1b6a7aecd35bdd25de35da967668485d"
 
-#SRC_URI = "git://nbd.name/luci2/ubus.git;protocol=git;branch=master"
 SRC_URI = "git://github.com/mkschreder/juci-ubus.git;protocol=git;branch=master"
 SRC_URI += "file://luajit.patch"
 		   

@@ -3,7 +3,7 @@ HOMEPAGE = "http://wiki.openwrt.org/"
 LICENSE = "LGPLv2"
 LIC_FILES_CHKSUM = "file://block.c;beginline=1;endline=14;md5=45e915598006ba7929c617cda79ab0fc"
 
-SRC_URI = "git://nbd.name/fstools.git;protocol=git;branch=master"
+SRC_URI = "git://git.openwrt.org/project/fstools.git"
 SRC_URI += "file://fstab.init"
 SRC_URI += "file://fstab.default"
 SRC_URI += "file://mount.hotplug"

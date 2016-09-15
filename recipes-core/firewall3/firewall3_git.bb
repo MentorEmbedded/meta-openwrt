@@ -3,7 +3,7 @@ HOMEPAGE = "http://wiki.openwrt.org/doc/techref/ubus"
 LICENSE = "ISC"
 LIC_FILES_CHKSUM = "file://main.c;beginline=1;endline=17;md5=587cc5ad76f548db3e8674df450dc88f"
 
-SRC_URI = "git://nbd.name/firewall3.git;protocol=git;branch=master"
+SRC_URI = "git://git.openwrt.org/project/firewall3.git"
 SRC_URI += "file://firewall.config"
 SRC_URI += "file://firewall.hotplug"
 SRC_URI += "file://firewall.init"
