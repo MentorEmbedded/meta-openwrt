@@ -25,3 +25,4 @@ Build instructions.
 5. git clone git@github.com:MentorEmbedded/meta-openwrt.git sources/meta-openwrt -b juci
 6. TEMPLATECONF=../sources/meta-openwrt/conf . ./sources/oe-core/oe-init-build-env
 7. bitbake  openwrt-image-base
+8. runqemu qemuarm nographic
