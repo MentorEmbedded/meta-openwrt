@@ -10,6 +10,10 @@ SECTION = "apps"
 SRCREV = "ae41b9aae88e002511f80607f2526403b786ed98"
 SRC_URI = "git://github.com/mkschreder/orangerpcd \
 		file://fix_luajit.patch \
+		file://access.json \
+		file://orange.config \
+		file://orange.init \
+		file://uci-defaults.sh \
            "
 
 S = "${WORKDIR}/git"
@@ -22,9 +26,26 @@ do_compile () {
 	oe_runmake
 }
 
+do_install_append () {
+	install -d ${D}/etc/init.d
+	install -m 750 ${WORKDIR}/orange.init ${D}/etc/init.d/orange
+	install -d ${D}/etc/config
+	install -m 644 ${WORKDIR}/orange.config ${D}/etc/config/orange
+	install -d ${D}/etc/uci-defaults
+	install -m 750 ${WORKDIR}/uci-defaults.sh ${D}/etc/uci-defaults/00-orange-rpcd.sh
+	install -d ${D}/usr/lib/orange/api/
+	cp -a ${S}/plugins/* ${D}/usr/lib/orange/api/
+	install -d ${D}/usr/lib/orange/lib/
+	cp -a ${S}/lualib/* ${D}/usr/lib/orange/lib/
+	install -d ${D}/usr/share/rpcd/acl.d/
+	install -m 644 ${WORKDIR}/access.json ${D}/usr/share/rpcd/acl.d/orange.json
+}
+
 EXTRA_OECONF = " LIBLUA_LINK=-lluajit "
 CFLAGS_append = " -D_DEFAULT_SOURCE -std=gnu99 `pkg-config --silence-errors --cflags luajit`"
 CFLAGS_remove = " -D_BSD_SOURCE "
 LDFLAGS_append = " `pkg-config --silence-errors --libs luajit` "
 DEPENDS += "libblobpack libutype libusys luci uci luajit libwebsockets iwinfo rpcd ubus"
 RDEPENDS_${PN} += "libutype libblobpack libusys"
+
+FILES_${PN} += "/usr/share/rpcd/acl.d/* /usr/lib/orange/* /usr/lib/orange/api/* /usr/lib/orange/plugins/*"
