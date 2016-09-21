@@ -1,7 +1,6 @@
 SUMMARY = "openwrt minimal image"
 
-IMAGE_INSTALL = "packagegroup-openwrt-boot rpcd uci iwinfo uhttpd2 luajit dnsmasq netifd firewall3 strace luci2 juci ubus-scriptd libsodium libuv libuv-lua czmq iconnect \
-		stunnel-juci lang-luaposix"
+IMAGE_INSTALL = "packagegroup-openwrt-boot rpcd uci iwinfo luajit dnsmasq netifd firewall3 strace ubus-scriptd juci luaposix33"
 IMAGE_FEATURES += ""
 
 LICENSE = "MIT"
