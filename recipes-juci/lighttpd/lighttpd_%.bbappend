@@ -28,6 +28,7 @@ EXTRA_OECONF += "--libdir=/usr/lib/lighttpd \
 	"
 
 LDFLAGS_append = " -lpcre "
+RDEPENDS_${PN} = ""
 
 do_install () {
 	DESTDIR=${D} oe_runmake install
