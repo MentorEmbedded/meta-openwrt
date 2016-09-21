@@ -39,6 +39,8 @@ do_install_append () {
 	cp -a ${S}/lualib/* ${D}/usr/lib/orange/lib/
 	install -d ${D}/usr/share/rpcd/acl.d/
 	install -m 644 ${WORKDIR}/access.json ${D}/usr/share/rpcd/acl.d/orange.json
+	install -m 750 ${S}/orangectl.sh ${D}/usr/bin/orangectl
+	install -d ${D}/usr/lib/orange/hooks/
 }
 
 EXTRA_OECONF = " LIBLUA_LINK=-lluajit "
