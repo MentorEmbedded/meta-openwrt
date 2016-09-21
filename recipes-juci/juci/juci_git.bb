@@ -1,22 +1,22 @@
 DESCRIPTION = "Scripted ubus object management daemon"
 LICENSE = "GPLv2"
-LIC_FILES_CHKSUM = "file://LICENSE;;;md5=87212b5f1ae096371049a12f80034f32"
+LIC_FILES_CHKSUM = "file://LICENSE;;;md5=3b5cabd0e344cf2565cd337b7680a208"
 
-SRC_URI = "git://github.com/mkschreder/juci.git;protocol=git;branch=master"
-SRC_URI += "file://fix_luajit.patch"
-SRCREV = "07121275b8c07296663b015847418d33477047f2"
+SRC_URI = "git://github.com/mkschreder/juci.git;protocol=git;branch=v2.16.09"
+SRCREV = "89c48fdf3609d9612d53d2a4f7658accd165e21d"
+
+SRC_URI += "file://40-juci-openwrt-config"
+SRC_URI += "file://user-admin.acl"
 S = "${WORKDIR}/git"
 B = "${S}"
 
 PR="r1"
 
-export CONFIG_PACKAGE_juci-ubus-core = "y"
 
-DEPENDS = "libuv-lua"
-RDEPENDS_${PN} = "libuv-lua"
+DEPENDS = "lighttpd luajit orange-rpcd"
+RDEPENDS_${PN} = "lighttpd luajit orange-rpcd"
 
-FILES_${PN}-dbg += "/usr/lib/rpcd/.debug /usr/libexec/rpcd/.debug"
-FILES_${PN} += "/usr/libexec/rpcd/juci-ubus-core-cgi /usr/lib/* /usr/lib/rpcd/*.so /usr/libexec/rpcd/*.so /usr/lib/ubus* /usr/share/* /etc/* /sbin/* /www/* "
+FILES_${PN} += " /usr/lib/* /usr/share/* /etc/* /sbin/* /www/* "
 
 do_configure_prepend () {
 	pushd ${B}
@@ -33,19 +33,28 @@ do_compile () {
 	oe_runmake
 	touch Makefile.local
 	touch .cleaned
-	oe_runmake CONFIG_PACKAGE_juci=y
-	oe_runmake CONFIG_PACKAGE_juci-router-openwrt=y
-	oe_runmake CONFIG_PACKAGE_juci-theme-inteno=y
+	oe_runmake CONFIG_PACKAGE_juci-ddns=y
+	oe_runmake CONFIG_PACKAGE_juci-dnsmasq-dhcp=y
+	oe_runmake CONFIG_PACKAGE_juci-dropbear=y
+	oe_runmake CONFIG_PACKAGE_juci-ethernet=y
+	oe_runmake CONFIG_PACKAGE_juci-event=y
+	oe_runmake CONFIG_PACKAGE_juci-firewall-fw3=y
+	oe_runmake CONFIG_PACKAGE_juci-simple-gui=y
+	oe_runmake CONFIG_PACKAGE_juci-macdb=y
+	oe_runmake CONFIG_PACKAGE_juci-minidlna=y
 	oe_runmake CONFIG_PACKAGE_juci-mod-status=y
 	oe_runmake CONFIG_PACKAGE_juci-mod-system=y
-	oe_runmake CONFIG_PACKAGE_juci-event=y
-	oe_runmake CONFIG_PACKAGE_juci-jquery-console=y
-	oe_runmake CONFIG_PACKAGE_juci-ethernet=y
-	oe_runmake CONFIG_PACKAGE_juci-inteno-router=y
-	oe_runmake CONFIG_PACKAGE_juci-firewall-fw3=y
-	oe_runmake CONFIG_PACKAGE_juci-netmode=y
 	oe_runmake CONFIG_PACKAGE_juci-network-netifd=y
 	oe_runmake CONFIG_PACKAGE_juci-openwrt-wireless=y
+	oe_runmake CONFIG_PACKAGE_juci-samba=y
+	oe_runmake CONFIG_PACKAGE_juci-snmpd=y
+	oe_runmake CONFIG_PACKAGE_juci-sysupgrade=y
+	oe_runmake CONFIG_PACKAGE_juci-uhttpd=y
+	oe_runmake CONFIG_PACKAGE_juci-upnp=y
+	oe_runmake CONFIG_PACKAGE_juci-usb=y
+	oe_runmake CONFIG_PACKAGE_juci-utils=y
+	oe_runmake CONFIG_PACKAGE_juci-theme-openwrt=y
+	oe_runmake CONFIG_PACKAGE_juci=y
 }
 
 do_install () {
@@ -53,11 +62,10 @@ do_install () {
 	cp ${S}/juci_redirect.sh ${D}/www/cgi-bin/luci
 	mkdir -p ${D}/sbin
 	cp ${S}/juci-update ${D}/sbin/
-	cp ${S}/scripts/juci-shell ${D}/sbin/
-	#luajit
-	mkdir -p ${D}/usr/share/lua/5.1
-	mv ${D}/usr/share/lua/juci ${D}/usr/share/lua/5.1
-	mv ${D}/usr/share/lua/luv ${D}/usr/share/lua/5.1
 	mkdir -p ${D}/etc/config
 	cp ${S}/juci.config.example ${D}/etc/config/juci
+	install -d ${D}/usr/lib/juci/acl
+	install -m 644 ${WORKDIR}/user-admin.acl ${D}/usr/lib/juci/acl
+	install -d ${D}/etc/uci-defaults
+	install -m 644 ${WORKDIR}/40-juci-openwrt-config ${D}/etc/uci-defaults/
 }
