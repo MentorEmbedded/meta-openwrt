@@ -11,6 +11,7 @@ S = "${WORKDIR}/git"
 B = "${S}"
 
 DEPENDS = "zeromq"
+DEPENDS += "libsodium"
 RDEPENDS_${PN} = "zeromq"
 
 
