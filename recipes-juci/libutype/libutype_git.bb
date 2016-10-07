@@ -8,9 +8,8 @@ LICENSE = "GPL-2.0"
 LIC_FILES_CHKSUM = "file://README.md;md5=d41d8cd98f00b204e9800998ecf8427e"
 SECTION = "libs"
 
-SRCREV = "7350bb28e7c96db2c4e3c7722e71f383a84881a2"
-SRC_URI = "git://github.com/mkschreder/libutype \
-"
+SRC_URI = "git://github.com/mkschreder/libutype.git;protocol=git;branch=master"
+SRCREV = "0cfa35bbb4948d6926aa85d3e48f2318b9166486"
 
 S = "${WORKDIR}/git"
 

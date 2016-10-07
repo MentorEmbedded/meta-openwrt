@@ -3,7 +3,7 @@ LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://LICENSE;;;md5=3b5cabd0e344cf2565cd337b7680a208"
 
 SRC_URI = "git://github.com/mkschreder/juci.git;protocol=git;branch=v2.16.09"
-SRCREV = "89c48fdf3609d9612d53d2a4f7658accd165e21d"
+SRCREV = "f91a1c60acbbbd970bee95f9e0c8ec34fe9b13be"
 
 SRC_URI += "file://40-juci-openwrt-config"
 SRC_URI += "file://user-admin.acl"
@@ -11,7 +11,6 @@ S = "${WORKDIR}/git"
 B = "${S}"
 
 PR="r1"
-
 
 DEPENDS = "lighttpd luajit orange-rpcd"
 RDEPENDS_${PN} = "lighttpd luajit orange-rpcd"

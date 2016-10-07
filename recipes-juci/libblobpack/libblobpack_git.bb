@@ -7,12 +7,10 @@ LICENSE = "GPL-2.0"
 LIC_FILES_CHKSUM = "file://README.md;md5=68c134fe97988f3855be33251a383648"
 SECTION = "libs"
 
-SRCREV = "4bb494cf13581c20e86981321470aa46dad46aa3"
-SRC_URI = "git://github.com/mkschreder/libblobpack \
-           "
+SRC_URI = "git://github.com/mkschreder/libblobpack"
+SRCREV = "a024c6e3a2512741d94e3a48d72e734de7f73ff3"
 
 S = "${WORKDIR}/git"
 inherit autotools
 
 FILES_${PN} = "${libdir}/*.so.*"
-
