@@ -1,0 +1,13 @@
+diff --git a/dependencies/lutok2/include/lutok2/common.hpp b/dependencies/lutok2/include/lutok2/common.hpp
+index 1b5079d..ea294c8 100644
+--- a/dependencies/lutok2/include/lutok2/common.hpp
++++ b/dependencies/lutok2/include/lutok2/common.hpp
+@@ -1,7 +1,7 @@
+ #ifndef LUTOK2_COMMON_H
+ #define LUTOK2_COMMON_H
+ 
+-#include <lua.hpp>
++#include <luajit-2.0/lua.hpp>
+ #include <cassert>
+ #include <string>
+ #include <exception>
