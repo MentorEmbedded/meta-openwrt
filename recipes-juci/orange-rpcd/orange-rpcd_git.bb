@@ -47,7 +47,7 @@ EXTRA_OECONF = " LIBLUA_LINK=-lluajit "
 CFLAGS_append = " -D_DEFAULT_SOURCE -std=gnu99 `pkg-config --silence-errors --cflags luajit`"
 CFLAGS_remove = " -D_BSD_SOURCE "
 LDFLAGS_append = " `pkg-config --silence-errors --libs luajit` "
-DEPENDS += "libblobpack libutype libusys luci uci luajit libwebsockets iwinfo rpcd ubus"
+DEPENDS += "libblobpack libutype libusys uci luajit libwebsockets iwinfo rpcd ubus"
 RDEPENDS_${PN} += "libutype libblobpack libusys"
 
 FILES_${PN} += "/usr/share/rpcd/acl.d/* /usr/lib/orange/* /usr/lib/orange/api/* /usr/lib/orange/plugins/*"
