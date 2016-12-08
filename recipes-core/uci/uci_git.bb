@@ -3,7 +3,7 @@ HOMEPAGE = "http://wiki.openwrt.org/doc/techref/uci"
 LICENSE = "LGPLv2"
 LIC_FILES_CHKSUM = "file://libuci.c;beginline=1;endline=13;md5=0ee862ed12171ee619c8c2eb7eff77f2"
 
-SRC_URI = "git://nbd.name/uci.git;protocol=git;branch=master"
+SRC_URI = "git://git.openwrt.org/project/uci.git"
 SRC_URI += "file://uci.sh"
 SRC_URI += "file://luajit.patch"
 		   
@@ -14,7 +14,7 @@ S = "${WORKDIR}/git"
 inherit cmake
 
 PR="r1"
-DEPENDS = "libubox luajit"
+DEPENDS = "libubox luajit uci-native"
 
 EXTRA_OECMAKE = "-DLUAPATH=/usr/lib/lua/5.1"
 RDEPENDS_${PN} += "libuci"

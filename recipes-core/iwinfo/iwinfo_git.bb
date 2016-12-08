@@ -16,9 +16,10 @@ DEPENDS = "uci luajit"
 PACKAGES += "libiwinfo"
 RDEPENDS_${PN} = "libiwinfo"
 
-FILES_${PN} = "/usr/bin"
+FILES_${PN} = "/usr/bin /usr/lib/lua/5.1/iwinfo.so"
 FILES_${PN}-dev = "/usr/include /usr/lib/libiwinfo.so" 
 FILES_libiwinfo = "/usr/lib/libiwinfo.so.0.0 /usr/lib/libiwinfo.so.0"
+FILES_${PN}-dbg = "/usr/lib/lua/5.1/.debug/iwinfo.so /usr/lib/.debug/libiwinfo.so.0.0 /usr/src/debug/iwinfo/* /usr/bin/.debug/*"
 
 do_compile () {
 	oe_runmake 'FPIC=-fPIC' compile
@@ -31,5 +32,7 @@ do_install () {
 	cp -a ${B}/libiwinfo.so ${D}/${libdir}
 	cp -a ${B}/include ${D}/usr/
 	install ${B}/iwinfo ${D}/usr/bin
+	mkdir -p ${D}/usr/lib/lua/5.1
+	install ${B}/luaiwinfo.so ${D}/usr/lib/lua/5.1/iwinfo.so
 }
 

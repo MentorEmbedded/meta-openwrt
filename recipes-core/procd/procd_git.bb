@@ -3,7 +3,7 @@ HOMEPAGE = "http://wiki.openwrt.org/doc/techref/procd"
 LICENSE = "LGPLv2"
 LIC_FILES_CHKSUM = "file://procd.c;beginline=1;endline=13;md5=61e3657604f131a859b57a40f27a9d8e"
 
-SRC_URI = "git://nbd.name/luci2/procd.git;protocol=git;branch=master"
+SRC_URI = "git://git.openwrt.org/project/procd.git"
 SRC_URI += "file://reload_config"
 SRC_URI += "file://hotplug*.json"
 SRC_URI += "file://procd.sh"

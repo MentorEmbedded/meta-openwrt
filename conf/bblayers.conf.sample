@@ -7,7 +7,7 @@ BBFILES ?= ""
 
 BBLAYERS ?= " \
   ##OEROOT##/meta \
-  ##OEROOT##/../meta-oe/meta-phyton \
+  ##OEROOT##/../meta-oe/meta-python \
   ##OEROOT##/../meta-oe/meta-networking \
   ##OEROOT##/../meta-oe/meta-oe \
   ##OEROOT##/../meta-openwrt \

@@ -7,16 +7,14 @@ Index: git/Makefile
 -IWINFO_CFLAGS      = $(CFLAGS) -std=gnu99 -fstrict-aliasing -Iinclude
 +IWINFO_CFLAGS      = $(CFLAGS) -std=gnu99 -fstrict-aliasing -Iinclude $(shell pkg-config --cflags luajit)
  IWINFO_LDFLAGS     = -luci
-
+ 
  IWINFO_LIB         = libiwinfo.so
-@@ -7,8 +7,8 @@ IWINFO_LIB_LDFLAGS = -Wl,--soname=libiwi
+@@ -7,7 +7,7 @@ IWINFO_LIB_LDFLAGS = -Wl,--soname=libiwi
  IWINFO_LIB_OBJ     = iwinfo_utils.o iwinfo_wext.o iwinfo_wext_scan.o iwinfo_lib.o
-
+ 
  IWINFO_LUA         = luaiwinfo.so
 -IWINFO_LUA_LDFLAGS = $(LDFLAGS) -shared -L. -liwinfo -llua
--IWINFO_LUA_OBJ     = iwinfo_lua.o
-+IWINFO_LUA_LDFLAGS = $(LDFLAGS) -shared -L. -liwinfo $(shell pkg-config --libs luajit)
-+IWINFO_LUA_OBJ     = iwinfo_lua.o
-
++IWINFO_LUA_LDFLAGS = -shared -L. -liwinfo $(shell pkg-config --libs luajit) $(LDFLAGS)
+ IWINFO_LUA_OBJ     = iwinfo_lua.o
+ 
  IWINFO_CLI         = iwinfo
- IWINFO_CLI_LDFLAGS = -L. -liwinfo $(LDFLAGS)

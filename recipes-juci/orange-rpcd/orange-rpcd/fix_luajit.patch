@@ -1,0 +1,16 @@
+Index: git/configure.ac
+===================================================================
+--- git.orig/configure.ac
++++ git/configure.ac
+@@ -16,9 +16,9 @@ AC_SUBST(VALGRIND_CHECK_RULES)
+ LT_INIT 
+ AC_PROG_CC
+ 
+-AC_CHECK_HEADERS([lua5.1/lua.h],[LIBLUA_LINK="-llua5.1"])
++AC_CHECK_HEADERS([lua5.1/lua.h],[LIBLUA_LINK="-lluajit-5.1"])
+ AC_CHECK_HEADERS([lua5.2/lua.h],[LIBLUA_LINK="-llua5.2"])
+-AC_CHECK_HEADERS([lua.h],[LIBLUA_LINK="-llua"])
++AC_CHECK_HEADERS([lua.h],[LIBLUA_LINK="-lluajit-5.1"])
+ AC_SUBST(LIBLUA_LINK) 
+ 
+ AC_CHECK_HEADERS([uci.h],[LIBUCI_LINK="-luci"])
