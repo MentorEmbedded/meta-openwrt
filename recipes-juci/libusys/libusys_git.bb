@@ -11,7 +11,7 @@ SECTION = "libs"
 DEPENDS += "libutype"
 RDEPENDS_${PN} += "libutype"
 
-SRCREV = "27c5f81c80a3ea113378f56d4fc0e8fd903e7abe"
+SRCREV = "dd7b53bf45baa1765f2163a81fd53a422e3b4fa8"
 SRC_URI = "git://github.com/mkschreder/libusys"
 
 inherit autotools
@@ -24,5 +24,5 @@ EXTRA_OEMAKE = "DESTDIR=${D} BUILD_DIR=${B}"
 TARGET_CC_ARCH += "${LDFLAGS}"
 
 FILES_SOLIBSDEV = ""
-FILES_${PN} = "${libdir}/*.so"
+#FILES_${PN} = "${libdir}/*.so"
 
