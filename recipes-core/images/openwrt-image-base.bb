@@ -1,6 +1,6 @@
 SUMMARY = "openwrt minimal image"
 
-IMAGE_INSTALL = "packagegroup-openwrt-boot rpcd uci iwinfo uhttpd2 luci luci2 luajit dnsmasq netifd strace"
+IMAGE_INSTALL = "packagegroup-openwrt-boot rpcd uci iwinfo uhttpd2 luci luci2 luajit dnsmasq netifd firewall3 strace"
 IMAGE_FEATURES += ""
 
 LICENSE = "MIT"
@@ -48,4 +48,4 @@ fix_image () {
 	echo "tty1::askfirst:/bin/ash --login" >> ${IMAGE_ROOTFS}/etc/inittab
 }
 
-IMAGE_PREPROCESS_COMMAND_append = "fix_image"
+IMAGE_PREPROCESS_COMMAND_append = " fix_image;"

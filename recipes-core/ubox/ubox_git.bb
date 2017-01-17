@@ -3,7 +3,7 @@ HOMEPAGE = "http://wiki.openwrt.org/doc/techref/ubox"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://kmodloader.c;beginline=1;endline=13;md5=61e3657604f131a859b57a40f27a9d8e"
 
-SRC_URI = "git://nbd.name/luci2/ubox.git;protocol=git;branch=master"
+SRC_URI = "git://git.openwrt.org/project/ubox.git"
 SRC_URI += "file://100-insmod-segfault.patch"
 SRC_URI += "file://log.init"
 		   

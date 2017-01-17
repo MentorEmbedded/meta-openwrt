@@ -11,7 +11,7 @@ The main idea behind this layer was to allow using OE build system together with
 
 Build requirements.
 
-This layer requiired:
+This layer required:
 * bitbake
 * oe-core
 * meta-openembedded mostly for lua/luajit
@@ -19,9 +19,10 @@ This layer requiired:
 Build instructions.
 
 1. mkdir sources
-2. git clone git://git.openembedded.org/openembedded-core sources/oe-core -b daisy
-3. git clone git://git.openembedded.org/bitbake sources/oe-core/bitbake -b 1.22
-4. git clone git://git.openembedded.org/meta-openembedded sources/meta-oe -b daisy
-5. git clone git@github.com:MentorEmbedded/meta-openwrt.git sources/meta-openwrt
-6. TEMPLATECONF=../sources/meta-openwrt/conf . ./source/oe-core/oe-init-build-env
+2. git clone git://git.openembedded.org/openembedded-core sources/oe-core -b dizzy
+3. git clone git://git.openembedded.org/bitbake sources/oe-core/bitbake -b 1.26
+4. git clone git://git.openembedded.org/meta-openembedded sources/meta-oe -b dizzy
+5. git clone git@github.com:MentorEmbedded/meta-openwrt.git sources/meta-openwrt -b juci
+6. TEMPLATECONF=../sources/meta-openwrt/conf . ./sources/oe-core/oe-init-build-env
 7. bitbake  openwrt-image-base
+8. runqemu qemuarm nographic

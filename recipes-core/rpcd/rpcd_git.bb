@@ -3,11 +3,11 @@ HOMEPAGE = "http://wiki.openwrt.org/doc/techref/rpcd"
 LICENSE = "ISC"
 LIC_FILES_CHKSUM = "file://main.c;beginline=1;endline=18;md5=da5faf55ed0618f0dde1c88e76a0fc74"
 
-SRC_URI = "git://nbd.name/luci2/rpcd.git;protocol=git;branch=master"
+SRC_URI = "git://github.com/mkschreder/juci-rpcd.git;protocol=git;branch=master"
 SRC_URI += "file://rpcd.init"
 SRC_URI += "file://rpcd.config"
 		   
-SRCREV = "311c85e7d9a8f7fee17e65afc371f4fd0c8cd588"
+SRCREV = "50b1a51f32bbabb450e0fcabb4225e967651b4bb"
 S = "${WORKDIR}/git"
 
 inherit cmake

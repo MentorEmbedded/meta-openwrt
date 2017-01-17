@@ -1,0 +1,127 @@
+Index: git/juci/lua/core.lua
+===================================================================
+--- git.orig/juci/lua/core.lua
++++ git/juci/lua/core.lua
+@@ -76,12 +76,13 @@ local function query(name)
+ end
+ 
+ local function shell(fmt, ...)
++	if arg == nil then arg = { "" } end
+ 	for k,v in base.ipairs(arg) do
+ 		-- TODO: this is inherently dangerous way to do shell commands. 
+ 		-- This way gets rid of basic forms of injection attacks, but
+ 		-- it still may miss some others that I did not think about. 
+ 		if base.type(v) == "string" then 
+-			arg[k] = v:gsub("[;*|><\]", "\\%1");
++			arg[k] = v:gsub("[;*|><\\]", "\\%1");
+ 		end
+ 	end
+ 	local p = base.assert(io.popen(string.format(fmt, base.unpack(arg)))); 
+Index: git/plugins/juci-mod-system/ubus/system.user
+===================================================================
+--- git.orig/plugins/juci-mod-system/ubus/system.user
++++ git/plugins/juci-mod-system/ubus/system.user
+@@ -5,7 +5,7 @@ local juci = require("juci/core");
+ local function shadow_table()
+ 	local result = {}; 
+ 	local shadow = juci.readfile("/etc/shadow"); 
+-	for line in shadow:gmatch("[^\r\n]+") do 
++	for line in shadow:gmatch("[^\\r\\n]+") do 
+ 		local fields = {}; 
+ 		for field in line:gmatch("[^:]+") do
+ 			table.insert(fields, field); 
+@@ -18,7 +18,7 @@ end
+ local function checkpassword(user, pass)
+ 	local shadow = juci.readfile("/etc/shadow"); 
+ 	local shpass = nil; 
+-	for line in shadow:gmatch("[^\r\n]+") do 
++	for line in shadow:gmatch("[^\\r\\n]+") do 
+ 		local fields = {}; 
+ 		for field in line:gmatch("[^:]+") do
+ 			table.insert(fields, field); 
+@@ -26,9 +26,9 @@ local function checkpassword(user, pass)
+ 		if(fields[1] == user) then shpass = fields[2]; end
+ 	end
+ 	if shpass == nil then return false; end
+-	local typ, salt, hash = shpass:match("\$([^$]+)$([^$]+)$([^$]+).*"); 
++	local typ, salt, hash = shpass:match("\\$([^$]+)$([^$]+)$([^$]+).*"); 
+ 	local epass = juci.shell("echo %s | openssl passwd -1 -salt "..salt.." -stdin", pass);
+-	epass = epass:match("[^\r\n]+"); 
++	epass = epass:match("[^\\r\\n]+"); 
+ 	if shpass == epass then 
+ 		return true; 
+ 	end
+Index: git/juci/lualibs/luv/fs.lua
+===================================================================
+--- git.orig/juci/lualibs/luv/fs.lua
++++ git/juci/lualibs/luv/fs.lua
+@@ -30,7 +30,7 @@ exports.homepage = "https://github.com/l
+ exports.description = "Node-style filesystem module for luvit"
+ exports.tags = {"luvit", "fs", "stream"}
+ 
+-local uv = require('uv')
++local uv = require('luv')
+ local adapt = require('luv.utils').adapt
+ local bind = require('luv.utils').bind
+ local join = require('luv.path').join
+Index: git/juci/lua/ethernet.lua
+===================================================================
+--- git.orig/juci/lua/ethernet.lua
++++ git/juci/lua/ethernet.lua
+@@ -10,7 +10,7 @@ local function network_list_adapters(opt
+ 	
+ 	function ipv4parse(ip)
+ 		if not ip then return "",""; end
+-		local ip,num = ip:match("([%d\.]+)/(%d+)"); 
++		local ip,num = ip:match("([%d\\.]+)/(%d+)"); 
+ 		local mask = "0.0.0.0"; 
+ 		if num then 
+ 			local inet_mask = "255"; 
+Index: git/juci/lualibs/luv/pretty-print.lua
+===================================================================
+--- git.orig/juci/lualibs/luv/pretty-print.lua
++++ git/juci/lualibs/luv/pretty-print.lua
+@@ -26,7 +26,7 @@ exports.tags = {"colors", "tty"}
+ exports.license = "Apache 2"
+ exports.author = { name = "Tim Caswell" }
+ 
+-local uv = require('uv')
++local uv = require('luv')
+ --local env = require('env')
+ 
+ local prettyPrint, dump, strip, color, colorize, loadColors
+Index: git/plugins/juci-ethernet/ubus/ethernet
+===================================================================
+--- git.orig/plugins/juci-ethernet/ubus/ethernet
++++ git/plugins/juci-ethernet/ubus/ethernet
+@@ -12,7 +12,7 @@ function ethernet_list_network_adapters(
+ 	
+ 	function ipv4parse(ip)
+ 		if not ip then return "",""; end
+-		local ip,num = ip:match("([%d\.]+)/(%d+)"); 
++		local ip,num = ip:match("([%d\\.]+)/(%d+)"); 
+ 		local mask = "0.0.0.0"; 
+ 		if num then 
+ 			local inet_mask = "255"; 
+Index: git/plugins/juci-network-netifd/ubus/network.status
+===================================================================
+--- git.orig/plugins/juci-network-netifd/ubus/network.status
++++ git/plugins/juci-network-netifd/ubus/network.status
+@@ -16,7 +16,7 @@ local function network_status_arp()
+ 	local clients = {}; 
+ 	for line in output:gmatch("[^\r\n]+") do 
+ 		local words = fields(line); 
+-		if(words[1] and words[1]:match("%d\.%d\.%d\.%d")) then 
++		if(words[1] and words[1]:match("%d\\.%d\\.%d\\.%d")) then 
+ 			table.insert(clients, {
+ 				ipaddr = words[1], 
+ 				hw = words[2], 
+@@ -35,7 +35,7 @@ local function network_status_ipv4routes
+ 	local routes = {}; 
+ 	for line in output:gmatch("[^\r\n]+") do 
+ 		local words = fields(line); 
+-		if(words[1] and words[1]:match("%d\.%d\.%d\.%d")) then 
++		if(words[1] and words[1]:match("%d\\.%d\\.%d\\.%d")) then 
+ 			table.insert(routes, {
+ 				destination = words[1], 
+ 				gateway = words[2], 

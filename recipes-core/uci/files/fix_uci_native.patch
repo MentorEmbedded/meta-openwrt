@@ -1,0 +1,26 @@
+Index: git/CMakeLists.txt
+===================================================================
+--- git.orig/CMakeLists.txt
++++ git/CMakeLists.txt
+@@ -13,20 +13,15 @@ CONFIGURE_FILE( ${CMAKE_SOURCE_DIR}/uci_
+ 
+ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
+ 
+-SET(LIB_SOURCES libuci.c file.c util.c delta.c parse.c blob.c)
++SET(LIB_SOURCES libuci.c file.c util.c delta.c parse.c)
+ 
+ ADD_LIBRARY(uci SHARED ${LIB_SOURCES})
+-TARGET_LINK_LIBRARIES(uci ubox)
+ SET_TARGET_PROPERTIES(uci PROPERTIES OUTPUT_NAME uci)
+ 
+ ADD_EXECUTABLE(cli cli.c)
+ SET_TARGET_PROPERTIES(cli PROPERTIES OUTPUT_NAME uci)
+ TARGET_LINK_LIBRARIES(cli uci)
+ 
+-ADD_LIBRARY(ucimap STATIC ucimap.c)
+-
+-ADD_SUBDIRECTORY(lua)
+-
+ INSTALL(FILES uci.h uci_config.h uci_blob.h ucimap.h
+ 	DESTINATION include
+ )

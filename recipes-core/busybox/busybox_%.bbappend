@@ -9,6 +9,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
 SRC_URI += " \
 	    file://lock.cfg \
+	    file://sha1.cfg \
 	    file://220-add_lock_util.patch \
 	    file://250-date-k-flag.patch \
            "
