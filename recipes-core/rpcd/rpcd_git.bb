@@ -7,7 +7,7 @@ SRC_URI = "git://github.com/mkschreder/juci-rpcd.git;protocol=git;branch=master"
 SRC_URI += "file://rpcd.init"
 SRC_URI += "file://rpcd.config"
 		   
-SRCREV = "10cb71fd6fd2a7135f0d4ddc08918a14d6c11068"
+SRCREV = "50b1a51f32bbabb450e0fcabb4225e967651b4bb"
 S = "${WORKDIR}/git"
 
 inherit cmake
