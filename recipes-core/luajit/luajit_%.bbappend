@@ -1,3 +1,5 @@
+DEPENDS += "ldconfig-native"
+
 EXTRA_OEMAKE = 'CROSS=${HOST_PREFIX} \
                 TARGET_CFLAGS="${TOOLCHAIN_OPTIONS} ${HOST_CC_ARCH}" \
                 TARGET_LDFLAGS="${TOOLCHAIN_OPTIONS} ${TUNE_CCARGS}" \
