@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;;;md5=87212b5f1ae096371049a12f80034f32"
 
 SRC_URI = "git://github.com/mkschreder/juci.git;protocol=git;branch=master"
 SRC_URI += "file://fix_luajit.patch"
-SRCREV = "07121275b8c07296663b015847418d33477047f2"
+SRCREV = "9d07c63b2d6f7eee17f6c6dfc3f783324599bfd8"
 S = "${WORKDIR}/git"
 B = "${S}"
 
