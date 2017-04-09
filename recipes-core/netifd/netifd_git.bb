@@ -7,7 +7,7 @@ SRC_URI = "git://git.openwrt.org/project/netifd.git;protocol=git;branch=master"
 SRC_URI += "file://files"
 SRC_URI += "file://fix-compile.patch"
 		   
-SRCREV = "46c569989f984226916fec28dd8ef152a664043e"
+SRCREV = "45fd905c980e56b20770d4b34556749fbca53fcc"
 S = "${WORKDIR}/git"
 
 inherit cmake
