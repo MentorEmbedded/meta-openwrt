@@ -42,6 +42,9 @@ do_install_append () {
         install ${D}/usr/lib/libblkid-tiny.so ${D}/lib/
         ln -s /sbin/block ${D}/usr/sbin/swapon
         ln -s /sbin/block ${D}/usr/sbin/swapoff
-
+	mv ${D}/usr/lib/libblkid-tiny.so ${D}/usr/lib/libblkid-tiny.so.1
+	ln -s /usr/lib/libblkid-tiny.so.1 ${D}/usr/lib/libblkid-tiny.so
+	mv ${D}/usr/lib/libfstools.so ${D}/usr/lib/libfstools.so.1
+	ln -s /usr/lib/libfstools.so.1 ${D}/usr/lib/libfstools.so
 }
 
