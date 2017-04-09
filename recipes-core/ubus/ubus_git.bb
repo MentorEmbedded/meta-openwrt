@@ -19,9 +19,9 @@ PACKAGES += "libubus"
 RDEPENDS_${PN} += "libubox libubus"
 RDEPENDS_libubus += "libubox"
 
-FILES_${PN} = "/usr/lib/lua/5.1 /bin /sbin"
+FILES_${PN} = "/usr/lib/lua/5.1 /bin /sbin /lib"
 FILES_${PN}-dev = "/usr/include /usr/lib/lib*.so"
-FILES_libubus = "${base_libdir}"
+FILES_libubus = "/usr/lib"
 FILES_${PN}-dbg += "/usr/lib/lua/5.1/.debug"
 
 
@@ -33,4 +33,6 @@ do_install_append () {
 	mv ${D}/usr/bin ${D}/bin
 	install ${S}/lua/test.lua ${D}/usr/lib/lua/5.1
 	install ${S}/lua/test_client.lua ${D}/usr/lib/lua/5.1
+	mv ${D}/usr/lib/libubus.so ${D}/usr/lib/libubus.so.1
+	ln -s /usr/lib/libubus.so.1 ${D}/usr/lib/libubus.so
 }
