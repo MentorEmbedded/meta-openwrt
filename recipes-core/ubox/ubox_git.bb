@@ -18,9 +18,10 @@ RDEPENDS_${PN} += "libvalidate ubus libubus libubox libuci"
 
 DEPENDS = "ubus libubox uci"
 PACKAGES += "libvalidate"
-FILES_${PN} = "${bindir} ${sysconfdir} /sbin /usr/sbin"
-FILES_${PN}-dev = "/usr/include /usr/lib"
-FILES_libvalidate = "${base_libdir}"
+FILES_${PN} = "${bindir} ${sysconfdir} /sbin /usr/sbin /etc/init.d/"
+FILES_${PN}-dev = ""
+FILES_libvalidate = "/usr/lib/*.so /lib/*.so"
+FILES_libvalidate-dev = ""
 
 do_install_append () {
         mkdir -p ${D}/usr/sbin ${D}/lib/ ${D}/etc/init.d/ ${D}/sbin
