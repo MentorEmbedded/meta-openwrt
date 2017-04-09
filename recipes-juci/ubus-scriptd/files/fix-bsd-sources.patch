@@ -1,0 +1,13 @@
+Index: git/src/main.c
+===================================================================
+--- git.orig/src/main.c
++++ git/src/main.c
+@@ -6,7 +6,7 @@
+ */	
+ #define _XOPEN_SOURCE
+ #define _XOPEN_SOURCE_EXTENDED 
+-#define _BSD_SOURCE
++#define _DEFAULT_SOURCE
+ 
+ #include <libubus.h>
+ #include <dirent.h>
