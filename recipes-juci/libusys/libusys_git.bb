@@ -23,6 +23,6 @@ EXTRA_OEMAKE = "DESTDIR=${D} BUILD_DIR=${B}"
 
 TARGET_CC_ARCH += "${LDFLAGS}"
 
-FILES_SOLIBSDEV = ""
-#FILES_${PN} = "${libdir}/*.so"
+FILES_SOLIBSDEV += "${libdir}/*.so"
+FILES_${PN}-dev += "${libdir}/*.so"
 
