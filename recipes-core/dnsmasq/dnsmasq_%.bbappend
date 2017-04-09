@@ -6,6 +6,7 @@ SRC_URI += "file://dnsmasq.hotplug"
 SRC_URI += "file://dnsmasq.init"
 
 RDEPENDS_${PN} += "jsonfilter"
+FILES_${PN} += "/tmp/hosts"
 
 do_install_append () {
 	mkdir -p ${D}/etc/config ${D}/etc/init.d ${D}/etc/hotplug.d/iface
