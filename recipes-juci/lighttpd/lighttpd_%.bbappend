@@ -4,6 +4,7 @@ SRC_URI = "git://github.com/mkschreder/juci-lighttpd \
 		file://lighttpd.init \
 		file://etc \
 		file://etc/certs \
+		file://pkgconfig.patch \
 	"
 S = "${WORKDIR}/git"
 B = "${WORKDIR}/build"
