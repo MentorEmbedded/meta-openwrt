@@ -18,7 +18,8 @@ inherit autotools
 
 #EXTRA_OEMAKE = "DESTDIR=${D} BUILD_DIR=${B}"
 
-FILES_SOLIBSDEV = ""
-FILES_${PN} = "${libdir}/*.so.*"
+FILES_SOLIBSDEV = "${libdir}/*.so"
+FILES_${PN} += "${libdir}/*.so.*"
+FILES_${PN}-dev += "${libdir}/*.so"
 
 RDEPENDS_${PN} += "libusys"
