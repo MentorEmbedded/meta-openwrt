@@ -35,12 +35,11 @@ FILES_${PN} += "/usr/lib/lua/5.1/*"
 FILES_${PN}-dbg += "/usr/lib/lua/5.1/.debug/*"
 
 do_configure_prepend() {
-	pushd ${S}
+	cd ${S}
 	${S}/bootstrap
-	popd
+	cd -
 }
 
 do_install() {
-	DESTDIR=${D} luaexecdir=/usr/lib/lua/5.1 oe_runmake -e install-exec
+	oe_runmake -e install-exec DESTDIR=${D} luaexecdir=/usr/lib/lua/5.1
 }
-

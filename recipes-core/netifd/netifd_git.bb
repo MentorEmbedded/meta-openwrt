@@ -18,8 +18,8 @@ DEPENDS = "ubus uci libubox libnl"
 FILES_${PN} += "/lib /usr/share"
 
 do_install_append () {
-	cp -a ${WORKDIR}/files/* ${D}/
+	cp -r ${WORKDIR}/files/* ${D}/
 	mv ${D}/usr/sbin/netifd ${D}/sbin
-	cp -a ${S}/scripts/* ${D}/lib/netifd
+	cp -r ${S}/scripts/* ${D}/lib/netifd
 	rmdir ${D}/usr/sbin
 }

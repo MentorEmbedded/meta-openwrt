@@ -26,7 +26,11 @@ FILES_libvalidate-dev = ""
 do_install_append () {
         mkdir -p ${D}/usr/sbin ${D}/lib/ ${D}/etc/init.d/ ${D}/sbin
 
-        mv ${D}/usr/sbin/{kmodloader,logd,logread,validate_data} ${D}/sbin/
+        mv ${D}/usr/sbin/kmodloader    ${D}/sbin/
+        mv ${D}/usr/sbin/logd          ${D}/sbin/
+        mv ${D}/usr/sbin/logread       ${D}/sbin/
+        mv ${D}/usr/sbin/validate_data ${D}/sbin/
+
         install ${WORKDIR}/log.init ${D}/etc/init.d/log
         install ${D}/usr/lib/libvalidate.so ${D}/${base_libdir}
 
