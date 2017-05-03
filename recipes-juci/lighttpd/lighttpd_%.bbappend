@@ -32,9 +32,9 @@ LDFLAGS_append = " -lpcre "
 RDEPENDS_${PN} = ""
 
 do_install () {
-	DESTDIR=${D} oe_runmake install
+	oe_runmake install DESTDIR=${D}
 	install -d ${D}/etc
-	cp -a ${WORKDIR}/etc/* ${D}/etc/
+	cp -r ${WORKDIR}/etc/* ${D}/etc/
 	install -d ${D}/etc/init.d
 	install -m 750 ${WORKDIR}/lighttpd.init ${D}/etc/init.d/lighttpd
 	return 0;

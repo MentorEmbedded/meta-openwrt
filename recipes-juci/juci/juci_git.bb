@@ -7,6 +7,8 @@ SRCREV = "9d07c63b2d6f7eee17f6c6dfc3f783324599bfd8"
 
 SRC_URI += "file://40-juci-openwrt-config"
 SRC_URI += "file://user-admin.acl"
+SRC_URI += "file://fix_host_uid_leak.patch"
+
 S = "${WORKDIR}/git"
 B = "${S}"
 
@@ -17,16 +19,6 @@ DEPENDS = "lighttpd luajit orange-rpcd"
 RDEPENDS_${PN} = "lighttpd luajit orange-rpcd"
 
 FILES_${PN} += " /usr/lib/* /usr/share/* /etc/* /sbin/* /www/* "
-
-do_configure_prepend () {
-	pushd ${B}
-	#./bootstrap.sh
-	popd
-}
-
-do_install_append () {
-	:
-}
 
 do_compile () {
 	oe_runmake clean
