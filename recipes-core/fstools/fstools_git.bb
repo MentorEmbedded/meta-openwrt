@@ -29,7 +29,9 @@ do_install_append () {
         mkdir -p ${D}/sbin ${D}/lib ${D}/usr/sbin ${D}/etc/hotplug.d/block ${D}/etc/init.d/ ${D}/etc/uci-defaults/
         
 	#FIXME: install directly to /sbin from build not using mv 
-	mv ${D}/usr/sbin/{mount_root,jffs2reset,snapshot_tool} ${D}/sbin/
+	mv ${D}/usr/sbin/mount_root ${D}/sbin/
+	mv ${D}/usr/sbin/jffs2reset ${D}/sbin/
+	mv ${D}/usr/sbin/snapshot_tool ${D}/sbin/
         install ${D}/usr/lib/libfstools.so ${D}/lib/
         install ${WORKDIR}/snapshot ${D}/sbin/
 

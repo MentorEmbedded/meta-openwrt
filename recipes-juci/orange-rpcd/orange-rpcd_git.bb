@@ -34,9 +34,9 @@ do_install_append () {
 	install -d ${D}/etc/uci-defaults
 	install -m 750 ${WORKDIR}/uci-defaults.sh ${D}/etc/uci-defaults/00-orange-rpcd.sh
 	install -d ${D}/usr/lib/orange/api/
-	cp -a ${S}/plugins/* ${D}/usr/lib/orange/api/
+	cp -r ${S}/plugins/* ${D}/usr/lib/orange/api/
 	install -d ${D}/usr/lib/orange/lib/
-	cp -a ${S}/lualib/* ${D}/usr/lib/orange/lib/
+	cp -r ${S}/lualib/* ${D}/usr/lib/orange/lib/
 	install -d ${D}/usr/share/rpcd/acl.d/
 	install -m 644 ${WORKDIR}/access.json ${D}/usr/share/rpcd/acl.d/orange.json
 	install -m 750 ${S}/orangectl.sh ${D}/usr/bin/orangectl
