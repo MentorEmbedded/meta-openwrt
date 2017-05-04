@@ -13,9 +13,7 @@ EXTRA_OEMAKE_class-native_append = ' \
 
 do_install_append () {
 	mkdir -p ${D}/usr/bin
-	pushd ${D}/usr/bin
-	ln -s luajit lua
-	popd 
+	ln -s luajit ${D}/usr/bin/lua
 }
 
 do_install_class-native () {

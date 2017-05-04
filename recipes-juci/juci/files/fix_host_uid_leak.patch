@@ -1,0 +1,33 @@
+This patch fixes host UID contamination.
+
+diff --git a/Makefile b/Makefile
+index 7d81490..fab0e36 100644
+--- a/Makefile
++++ b/Makefile
+@@ -19,7 +19,7 @@ CSS_DIR:=$(BIN)/www/css
+ TMP_DIR:=tmp
+ TARGETS:=
+ PHONY:=debug release clean prepare node_modules 
+-CP:=cp -Rp 
++CP:=cp -R 
+ Q:=@
+ INSTALL_DIR:=mkdir -p
+ 
+@@ -204,7 +204,7 @@ install:
+ 	$(INSTALL_DIR) $(BIN)/usr/bin/
+ 	@cp juci.config.example $(BIN)/usr/share/juci/
+ 	@cp juci-update $(BIN)/usr/bin/
+-	@cp -Rp $(BIN)/* $(DESTDIR)
++	@$(CP) $(BIN)/* $(DESTDIR)
+ 
+ .PHONY: $(PHONY) $(UBUS_MODS) 
+ 
+@@ -213,7 +213,7 @@ $(UBUS_MODS):
+ 	@echo "CFLAGS: $(CFLAGS)"
+ 	@make -i -C $@ clean
+ 	@make -C $@ 
+-	@cp -Rp $@/build/* $(BIN)/
++	@$(CP) $@/build/* $(BIN)/
+ 	
+ clean: 
+ 	rm -rf ./bin ./tmp
