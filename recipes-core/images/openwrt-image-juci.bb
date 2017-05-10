@@ -23,13 +23,11 @@ fix_image () {
 		ln -sf ../init.d/rpcd ${IMAGE_ROOTFS}/etc/rc.d/S12rpcd
 		ln -sf ../init.d/done ${IMAGE_ROOTFS}/etc/rc.d/S95done
 	fi
-	pushd ${IMAGE_ROOTFS} 
-	for script in ./etc/init.d/*
+	for script in ${IMAGE_ROOTFS}/etc/init.d/*
 	do 
-		grep '#!/bin/sh /etc/rc.common' $script >/dev/null || continue
-		IPKG_INSTROOT=${IMAGE_ROOTFS} $(which bash) ./etc/rc.common $script enable
+		grep -q '#!/bin/sh /etc/rc.common' $script || continue
+		IPKG_INSTROOT=${IMAGE_ROOTFS} $(which bash) ${IMAGE_ROOTFS}/etc/rc.common $script enable
 	done || true
-	popd
 
 	#FIXME: put the below to sysvinit.bb instead
 	echo "::sysinit:/etc/init.d/rcS S boot" > ${IMAGE_ROOTFS}/etc/inittab
