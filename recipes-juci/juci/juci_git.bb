@@ -2,8 +2,8 @@ DESCRIPTION = "Scripted ubus object management daemon"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://LICENSE;;;md5=3b5cabd0e344cf2565cd337b7680a208"
 
-SRC_URI = "git://github.com/mkschreder/juci.git;protocol=git;branch=master"
-SRCREV = "9d07c63b2d6f7eee17f6c6dfc3f783324599bfd8"
+SRC_URI = "git://git@bitbucket.org/spbteam/juci;protocol=ssh;branch=dga900"
+SRCREV = "b8deb73371979161738a23689c19d471d640366a"
 
 SRC_URI += "file://40-juci-openwrt-config"
 SRC_URI += "file://user-admin.acl"
