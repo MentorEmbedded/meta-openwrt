@@ -3,7 +3,7 @@ HOMEPAGE = "http://wiki.openwrt.org/"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=94d55d512a9ba36caa9b7df079bae19f"
 
-SRC_URI = "git://git.openwrt.org/14.07/openwrt.git;protocol=git;branch=master"
+SRC_URI = "git://git.archive.openwrt.org/14.07/openwrt.git;protocol=git;branch=master"
 SRC_URI += "file://LICENSE"
 SRC_URI += "file://fix-network-config.patch"
 		   
